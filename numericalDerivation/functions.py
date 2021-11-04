@@ -1,23 +1,26 @@
 # This file is for the mathematical functions in the tasks related to numerical derivation
 # You can include this file to access the different function: f_1, f_2, f_3 and f_4
-import numpy as np
+import sympy as sym
+
+x, y = sym.symbols("x y")
 
 
-def f_1(x):
-    result = 7 * (x ** 2) - 8 * x + 1
-    return result
+def f_1():
+    return 7*x**2-8*x+1
 
 
-def f_2(x):
-    result = np.sin(x)
-    return result
+def f_2():
+    return sym.sin(x)
 
 
-def f_3(x):
-    result = (1 - x)/(x + 3)**2
-    return result
+def f_3():
+    return (1 - x)/(x + 3)**2
 
 
-def f_4(x):
-    result = np.sqrt(1+x**2)
-    return result
+def f_4():
+    return sym.sqrt(1+x**2)
+
+
+def x_0(i):
+    arr = [1, sym.pi/4, 1, 5]
+    return arr[i]
