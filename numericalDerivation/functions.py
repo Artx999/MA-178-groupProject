@@ -2,7 +2,7 @@
 # You can include this file to access the different function: f_1, f_2, f_3 and f_4
 import sympy as sym
 
-x, y = sym.symbols("x y")
+x, y, dx = sym.symbols("x y dx")  # idk if dx actually does anything
 
 
 def f_1():
