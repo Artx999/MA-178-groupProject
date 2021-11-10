@@ -1,5 +1,3 @@
-import sympy as sym
-
 from functions import *
 
 # Task 1
@@ -40,4 +38,11 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
     diff = sym.diff(i)
     g = (i.evalf(subs={x: x_0(count - 1) + dx}) - i.evalf(subs={x: x_0(count - 1)}))/dx
     print("E_" + str(count) + "'(" + str(x_0(count - 1)) + ")=", abs(diff.evalf(subs={x: x_0(count - 1)}) - g))
+print("\n")
+
+# Task d
+print("Task d)")
+count = 0
+for i in [f_1(), f_2(), f_3(), f_4()]:
+    count += 1
 print("\n")
