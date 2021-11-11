@@ -42,7 +42,27 @@ print("\n")
 
 # Task d
 print("Task d)")
-count = 0
+range = 0
 for i in [f_1(), f_2(), f_3(), f_4()]:
-    count += 1
-print("\n")
+    truePath = False
+    nextFunc = False
+    count = 2
+    range += 1
+    f = 0.001
+    dx = 0.1
+    diff = sym.diff(i).evalf(subs={x: x_0(range - 1)})
+    while not nextFunc:
+        g = (i.evalf(subs={x: x_0(range - 1) + dx}) - i.evalf(subs={x: x_0(range - 1)})) / dx
+        E = abs(diff - g)
+
+        if E > f:
+            if truePath:
+                dx = dx - 1/(10**count)
+                nextFunc = True
+            if not nextFunc:
+                dx = dx / 10
+                count += 1
+        if E < f and not nextFunc:
+            dx = dx + 1/(10**count)
+            truePath = True
+    print("dx_" + str(range) + " = " + str(round(dx, 10)))
