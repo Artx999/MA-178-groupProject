@@ -1,6 +1,3 @@
 from functions import *
-import matplotlib.pyplot as plt
 
-plt.plot([1, 2, 3, 4], [1, 4, 9, 16])
-plt.show()
-
+arr = [(f_1(), (x, 0, 2)), (f_2(), (x, 0, 2*sym.pi))]

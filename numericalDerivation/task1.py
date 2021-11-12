@@ -6,6 +6,15 @@ count = 0
 for i in [f_1(), f_2(), f_3(), f_4()]:
     count += 1
     print("f_" + str(count) + "(x)=", i)
+    xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 100)
+    yAxis = []
+    for j in xAxis:
+        yAxis.append(i.evalf(subs={x: j}))
+    plt.plot(xAxis, yAxis, label="f_" + str(count) + "(x)")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend(loc="upper right")
+plt.show()
 print("\n")
 
 # Task a

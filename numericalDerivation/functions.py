@@ -1,6 +1,8 @@
 # This file is for the mathematical functions in the tasks related to numerical derivation
 # You can include this file to access the different function: f_1, f_2, f_3 and f_4
 import sympy as sym
+import numpy as np
+import matplotlib.pyplot as plt
 
 x, y, dx = sym.symbols("x y dx")  # idk if dx actually does anything
 
@@ -23,4 +25,9 @@ def f_4():
 
 def x_0(i):
     arr = [1, sym.pi/4, 1, 5]
+    return arr[i]
+
+
+def interval(i):
+    arr = [(0, 2), (0, 2*np.pi), (-2, 2), (0, 10)]
     return arr[i]
