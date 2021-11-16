@@ -57,12 +57,12 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
 
         if E > f:
             if truePath:
-                dx = dx - 1/(10**degree)
+                dx = dx - 1/(10**(degree + 1))
                 nextFunc = True
             if not nextFunc:
                 dx = dx / 10
                 degree += 1
         else:
-            dx = dx + 1/(10**degree)
+            dx = dx + 1/(10**(degree + 1))
             truePath = True
-    print("dx_" + str(count) + " = " + str(dx))
+    print("dx_" + str(count) + " = " + str(round(dx, degree)))
