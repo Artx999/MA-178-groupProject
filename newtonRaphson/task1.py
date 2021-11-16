@@ -2,13 +2,16 @@ from sympy import *
 
 x = Symbol('x')
 
-#Definere funksjon
+
+# Definere funksjon
 def f(x):
     return 3*x**2 + 4*x - 4
 
-#Definere deriverte av funksjonen
+
+# Definere deriverte av funksjonen
 def g(x):
     return 6*x + 4
+
 
 #Definere funksjonen newtonRaphson
 def newtonRaphson(x0, E, N):
