@@ -1,45 +1,45 @@
-from sympy import *
+import sympy as sym
 
-x = Symbol('x')
+x = sym.Symbol('x')
 
 
-# Definere funksjon
+# Define function f
 def f(x):
-    return 3*x**2 + 4*x - 4
+    return 3 * x ** 2 + 4 * x - 4
 
 
-# Definere deriverte av funksjonen
+# Define the differentiation of f, called g
 def g(x):
-    return 6*x + 4
+    return 6 * x + 4
 
 
-#Definere funksjonen newtonRaphson
-def newtonRaphson(x0, E, N):
-    print("NEWTON RAPHSON's METODE\n")
+# Define a function/algorithm for Newton Raphsons Method
+def newtonRaphson(xn, E, n):
+    print("NEWTON RAPHSONs METHOD\n")
     count = 1
 
-    condition = True
-    while condition:
-        if g(x0) == 0.0:
-            print("Kan ikke dele på 0\n")
+    while True:
+        if g(xn) == 0.0:
+            print("Cannot divide by 0\n")
             break
 
-        x1 = x0 - f(x0) / g(x0)
-        print("Iteration-%d, x1 = %0.12f and f(x1) = %0.12f" % (count, x1, f(x1)))
-        x0 = x1
-        count = count + 1
-        if count > N:
+        xn1 = xn - f(xn) / g(xn)
+        print("Iteration %i: x_%i = %0.12f and f(x_%i) = %0.12f" % (count, count, xn1, count, f(xn1)))
+        xn = xn1
+        count += 1
+        if count > n:
+            print("Reached the maximum amount of iterations")
             break
 
-        condition = abs(f(x1)) > E
+        if not abs(f(xn1)) > E:
+            break
+
+    print("Konvergerer mot: %0.12f\n" % xn1)
 
 
-    print("Rooten er: %0.12f\n" % x1)
+# Asking for input
+x0 = float(input("Enter x_0: "))
+iterations = int(input("Enter number of maximum iterations allowed: "))
 
-
-#Asking for x0
-x0 = float(input("Enter Guess: "))
-N = int(input("Enter number of iterations: "))
-
-# Starting Newton Raphson Method
-newtonRaphson(x0, 10**-12, N)
+# Starting Newton Raphsons Method
+newtonRaphson(x0, 10 ** -12, iterations)
