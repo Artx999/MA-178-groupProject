@@ -28,6 +28,8 @@ def newtonRaphson(x0, E, N):
         print("Iteration-%d, x1 = %0.12f and f(x1) = %0.12f" % (count, x1, f(x1)))
         x0 = x1
         count = count + 1
+        if count > N:
+            break
 
         condition = abs(f(x1)) > E
 
