@@ -35,7 +35,6 @@ print("Generated plots for task b")
 
 # Task c
 count = 0
-count = 0
 for i in [f_1(), f_2(), f_3(), f_4()]:
     truePath = False
     nextFunc = False
@@ -65,6 +64,16 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
     for j in xAxis:
         yAxis.append((i.evalf(subs={x: j + dxRounded}) - i.evalf(subs={x: j})) / dxRounded)
     plt.plot(xAxis, yAxis, label="g_" + str(count) + "(" + str(dxRounded) + ")")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend(loc="upper right")
+plt.show()
+print("Generated plots for task c")
+
+# Task d
+count = 0
+for i in [f_1(), f_2(), f_3(), f_4()]:
+    print(i)
 plt.xlabel("x")
 plt.ylabel("y")
 plt.legend(loc="upper right")
