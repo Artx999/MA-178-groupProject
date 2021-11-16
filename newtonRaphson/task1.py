@@ -10,8 +10,8 @@ def f(x):
 def g(x):
     return 6*x + 4
 
-#Definere funksjonen NewtonRaphson
-def newtonRaphson(x0, E):
+#Definere funksjonen newtonRaphson
+def newtonRaphson(x0, E, N):
     print("NEWTON RAPHSON's METODE\n")
     count = 1
 
@@ -33,7 +33,8 @@ def newtonRaphson(x0, E):
 
 
 #Asking for x0
-x0 = float(input('Enter Guess: '))
+x0 = float(input("Enter Guess: "))
+N = int(input("Enter number of iterations: "))
 
 # Starting Newton Raphson Method
-newtonRaphson(x0, 10**-12)
+newtonRaphson(x0, 10**-12, N)
