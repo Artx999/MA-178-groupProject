@@ -6,15 +6,6 @@ count = 0
 for i in [f_1(), f_2(), f_3(), f_4()]:
     count += 1
     print("f_" + str(count) + "(x)=", i)
-    xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 100)
-    yAxis = []
-    for j in xAxis:
-        yAxis.append(i.evalf(subs={x: j}))
-    plt.plot(xAxis, yAxis, label="f_" + str(count) + "(x)")
-plt.xlabel("x")
-plt.ylabel("y")
-plt.legend(loc="upper right")
-plt.show()
 print("\n")
 
 # Task a
@@ -22,8 +13,8 @@ print("Task a)")
 count = 0
 for i in [f_1(), f_2(), f_3(), f_4()]:
     count += 1
-    diff = sym.diff(i)
-    print("f_" + str(count) + "'(x)=", sym.simplify(diff))
+    diff = sym.simplify(sym.diff(i))
+    print("f_" + str(count) + "'(x)=", diff)
 print("\n")
 
 # Task b
@@ -32,7 +23,7 @@ count = 0
 for i in [f_1(), f_2(), f_3(), f_4()]:
     count += 1
     dx = 0.1
-    diff = sym.diff(i)
+    diff = sym.simplify(sym.diff(i))
     g = (i.evalf(subs={x: x_0(count - 1) + dx}) - i.evalf(subs={x: x_0(count - 1)}))/dx
     print("f_" + str(count) + "'(" + str(x_0(count - 1)) + ")=", diff.evalf(subs={x: x_0(count - 1)}))
     print("g_" + str(count) + "(" + str(x_0(count - 1)) + ")=", g)
@@ -51,27 +42,27 @@ print("\n")
 
 # Task d
 print("Task d)")
-range = 0
+count = 0
 for i in [f_1(), f_2(), f_3(), f_4()]:
     truePath = False
     nextFunc = False
-    count = 2
-    range += 1
+    degree = 2
+    count += 1
     f = 0.001
     dx = 0.1
-    diff = sym.diff(i).evalf(subs={x: x_0(range - 1)})
+    diff = sym.diff(i).evalf(subs={x: x_0(count - 1)})
     while not nextFunc:
-        g = (i.evalf(subs={x: x_0(range - 1) + dx}) - i.evalf(subs={x: x_0(range - 1)})) / dx
+        g = (i.evalf(subs={x: x_0(count - 1) + dx}) - i.evalf(subs={x: x_0(count - 1)})) / dx
         E = abs(diff - g)
 
         if E > f:
             if truePath:
-                dx = dx - 1/(10**count)
+                dx = dx - 1/(10**degree)
                 nextFunc = True
             if not nextFunc:
                 dx = dx / 10
-                count += 1
-        if E < f and not nextFunc:
-            dx = dx + 1/(10**count)
+                degree += 1
+        else:
+            dx = dx + 1/(10**degree)
             truePath = True
-    print("dx_" + str(range) + " = " + str(round(dx, 10)))
+    print("dx_" + str(count) + " = " + str(dx))
