@@ -9,4 +9,19 @@ def f1():
     return f(0)
 
 
-newtonRaphson(f1, 10, 10**-12, 1000)
+x0 = float(input("Enter x_0: "))
+iterations = int(input("Enter number of maximum iterations allowed: "))
+
+
+for i in range(10):
+    a = newtonRaphson(f1, x0, 10 ** -12, iterations)
+
+    while a > 2*sym.pi or a < 0:
+        if a > 2*sym.pi:
+            a -= 2*sym.pi
+        else:
+            a += 2*sym.pi
+
+    print("This translates to: " + str(round(a, 5)) + " in radians for the definition area [0, 2pi]")
+
+    x0 += 1

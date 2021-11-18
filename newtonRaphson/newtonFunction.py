@@ -27,4 +27,6 @@ def newtonRaphson(function, startingValue, errorTolerance, maxIterations):
         if not abs(f.evalf(subs={x: newValue})) > errorTolerance:
             break
 
-    print("Konvergerer mot: %0.12f\n" % newValue)
+    print("Converges to: %0.12f\n" % newValue)
+
+    return newValue
