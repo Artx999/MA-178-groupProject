@@ -6,7 +6,7 @@ from functions import *
 count = 0
 for i in [f_1(), f_2(), f_3(), f_4()]:
     count += 1
-    xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 100)
+    xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 1000)
     yAxis = []
     for j in xAxis:
         yAxis.append(i.evalf(subs={x: j}))
@@ -22,7 +22,7 @@ count = 0
 for i in [f_1(), f_2(), f_3(), f_4()]:
     count += 1
     diff = sym.simplify(sym.diff(i))
-    xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 100)
+    xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 1000)
     yAxis = []
     for j in xAxis:
         yAxis.append(diff.evalf(subs={x: j}))
@@ -59,7 +59,7 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
             truePath = True
     dxRounded = round(dx, degree)
 
-    xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 100)
+    xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 1000)
     yAxis = []
     for j in xAxis:
         yAxis.append((i.evalf(subs={x: j + dxRounded}) - i.evalf(subs={x: j})) / dxRounded)
@@ -97,7 +97,7 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
             truePath = True
     dxRounded = round(dx, degree)
 
-    xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 100)
+    xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 1000)
     yAxis = []
     for j in xAxis:
         yAxis.append(abs(((i.evalf(subs={x: j + dxRounded}) - i.evalf(subs={x: j})) / dxRounded) - diff.evalf(subs={x: j})))
