@@ -101,9 +101,10 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
     yAxis = []
     for j in xAxis:
         yAxis.append(abs(((i.evalf(subs={x: j + dxRounded}) - i.evalf(subs={x: j})) / dxRounded) - diff.evalf(subs={x: j})))
+    plt.subplot(2, 2, count)
     plt.plot(xAxis, yAxis, label="E_" + str(count) + "(x)")
-plt.xlabel("x")
-plt.ylabel("y")
-plt.legend(loc="upper right")
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.legend(loc="upper right")
 plt.show()
 print("Generated plots for task d")
