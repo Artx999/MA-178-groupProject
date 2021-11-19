@@ -1,3 +1,4 @@
+# Import libraries, functions, values and intervals
 from functions import *
 
 # Task 2
@@ -6,11 +7,15 @@ from functions import *
 count = 0
 for i in [f_1(), f_2(), f_3(), f_4()]:
     count += 1
+    # Generate an array with all x-values, with a 1000 points
     xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 1000)
     yAxis = []
+    # Generate a y-value for each x-value
     for j in xAxis:
         yAxis.append(i.evalf(subs={x: j}))
+    # Plot f_n(x)
     plt.plot(xAxis, yAxis, label="f_" + str(count) + "(x)")
+# Generate image / all graphs
 plt.xlabel("x")
 plt.ylabel("y")
 plt.legend(loc="upper right")
@@ -22,10 +27,13 @@ count = 0
 for i in [f_1(), f_2(), f_3(), f_4()]:
     count += 1
     diff = sym.simplify(sym.diff(i))
+    # Generate an array with all x-values, with a 1000 points
     xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 1000)
     yAxis = []
+    # Generate a y-value for each x-value
     for j in xAxis:
         yAxis.append(diff.evalf(subs={x: j}))
+    # Plot f_n'(x)
     plt.plot(xAxis, yAxis, label="f_" + str(count) + "'(x)")
 plt.xlabel("x")
 plt.ylabel("y")
@@ -43,6 +51,7 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
     f = 0.001
     dx = 0.1
     diff = sym.diff(i).evalf(subs={x: x_0(count - 1)})
+    # Find largest possible dx while still keeping E_n(x_0) under 0.001
     while not nextFunc:
         g = (i.evalf(subs={x: x_0(count - 1) + dx}) - i.evalf(subs={x: x_0(count - 1)})) / dx
         E = abs(diff - g)
@@ -59,10 +68,13 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
             truePath = True
     dxRounded = round(dx, degree)
 
+    # Generate an array with all x-values, with a 1000 points
     xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 1000)
     yAxis = []
+    # Generate a y-value for each x-value
     for j in xAxis:
         yAxis.append((i.evalf(subs={x: j + dxRounded}) - i.evalf(subs={x: j})) / dxRounded)
+    # Plot g(x_0) with dx from 1d
     plt.plot(xAxis, yAxis, label="g_" + str(count) + "(x)")
 plt.xlabel("x")
 plt.ylabel("y")
@@ -81,6 +93,7 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
     dx = 0.1
     diff = sym.simplify(sym.diff(i))
     diffVal = sym.diff(i).evalf(subs={x: x_0(count - 1)})
+    # Find largest possible dx while still keeping E_n(x_0) under 0.001
     while not nextFunc:
         g = (i.evalf(subs={x: x_0(count - 1) + dx}) - i.evalf(subs={x: x_0(count - 1)})) / dx
         E = abs(diffVal - g)
@@ -97,10 +110,13 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
             truePath = True
     dxRounded = round(dx, degree)
 
+    # Generate an array with all x-values, with a 1000 points
     xAxis = np.linspace(interval(count - 1)[0], interval(count - 1)[1], 1000)
     yAxis = []
+    # Generate a y-value for each x-value
     for j in xAxis:
         yAxis.append(abs(((i.evalf(subs={x: j + dxRounded}) - i.evalf(subs={x: j})) / dxRounded) - diff.evalf(subs={x: j})))
+    # Plot E_n(x) with dx from 1d
     plt.subplot(2, 2, count)
     plt.plot(xAxis, yAxis, label="E_" + str(count) + "(x)")
     plt.xlabel("x")

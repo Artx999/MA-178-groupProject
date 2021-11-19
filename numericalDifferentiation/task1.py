@@ -1,3 +1,4 @@
+# Import libraries, functions, values and intervals
 from functions import *
 
 # Task 1
@@ -5,6 +6,7 @@ print("Task 1")
 count = 0
 for i in [f_1(), f_2(), f_3(), f_4()]:
     count += 1
+    # Print f_n(x)
     print("f_" + str(count) + "(x)=", i)
 print("\n")
 
@@ -14,6 +16,7 @@ count = 0
 for i in [f_1(), f_2(), f_3(), f_4()]:
     count += 1
     diff = sym.simplify(sym.diff(i))
+    # Print f_n'(x)
     print("f_" + str(count) + "'(x)=", diff)
 print("\n")
 
@@ -25,7 +28,9 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
     dx = 0.1
     diff = sym.simplify(sym.diff(i))
     g = (i.evalf(subs={x: x_0(count - 1) + dx}) - i.evalf(subs={x: x_0(count - 1)}))/dx
+    # Print f_n'(x_0)
     print("f_" + str(count) + "'(" + str(x_0(count - 1)) + ")=", diff.evalf(subs={x: x_0(count - 1)}))
+    # Print g_n(x_0)
     print("g_" + str(count) + "(" + str(x_0(count - 1)) + ")=", g, "\n")
 print("\n")
 
@@ -37,6 +42,7 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
     dx = 0.1
     diff = sym.diff(i)
     g = (i.evalf(subs={x: x_0(count - 1) + dx}) - i.evalf(subs={x: x_0(count - 1)}))/dx
+    # Print E_n(x_0)
     print("E_" + str(count) + "'(" + str(x_0(count - 1)) + ")=", abs(diff.evalf(subs={x: x_0(count - 1)}) - g))
 print("\n")
 
@@ -51,6 +57,7 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
     f = 0.001
     dx = 0.1
     diff = sym.diff(i).evalf(subs={x: x_0(count - 1)})
+    # Find largest possible dx while still keeping E_n(x_0) under 0.001
     while not nextFunc:
         g = (i.evalf(subs={x: x_0(count - 1) + dx}) - i.evalf(subs={x: x_0(count - 1)})) / dx
         E = abs(diff - g)
@@ -65,4 +72,5 @@ for i in [f_1(), f_2(), f_3(), f_4()]:
         else:
             dx = dx + 1/(10**(degree + 1))
             truePath = True
+    # Print the maximum dx allowed, while still keeping E_n(x_0) under 0.001
     print("dx_" + str(count) + " = " + str(round(dx, degree)))
